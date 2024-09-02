@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Check if the virtual environment exists
+if [ ! -d "env" ]; then
+    echo "Creating virtual environment..."
+    python3 -m venv env
+    env/bin/python3 -m pip install --upgrade pip
+    env/bin/python3 -m pip install -r requirements.txt
+fi
+
+# Run the application
+env/bin/hypercorn app:app --reload
